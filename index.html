@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>ProTrainer - Персональный тренер</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+		<style>
+			/* Кастомные стили */
+			.hero-gradient {
+				background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+			}
+			.page-transition {
+				transition: opacity 0.3s ease, transform 0.3s ease;
+			}
+			.page-hidden {
+				opacity: 0;
+				transform: translateY(10px);
+				display: none;
+			}
+			.page-active {
+				opacity: 1;
+				transform: translateY(0);
+				display: block;
+			}
+			.trainer-card:hover {
+				transform: translateY(-5px);
+				box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+			}
+		</style>
+	</head>
+	<body class="font-sans bg-gray-50">
+		<!-- Навигация -->
+		<nav class="bg-white shadow-lg sticky top-0 z-50">
+			<div class="container mx-auto px-4">
+				<div class="flex justify-between items-center h-16">
+					<div class="flex items-center">
+						<a href="#" class="text-2xl font-bold text-blue-600" onclick="showPage('home')">ProTrainer</a>
+					</div>
+					<div class="hidden md:flex space-x-8">
+						<a href="#" class="text-gray-700 hover:text-blue-600 font-medium" onclick="showPage('home')">Главная</a>
+						<a href="#" class="text-gray-700 hover:text-blue-600 font-medium" onclick="showPage('about')">Обо мне</a>
+						<a href="#" class="text-gray-700 hover:text-blue-600 font-medium" onclick="showPage('services')">Услуги</a>
+						<a href="#" class="text-gray-700 hover:text-blue-600 font-medium" onclick="showPage('pricing')">Цены</a>
+						<a href="#" class="text-gray-700 hover:text-blue-600 font-medium" onclick="showPage('testimonials')"
+							>Отзывы</a
+						>
+						<a href="#" class="text-gray-700 hover:text-blue-600 font-medium" onclick="showPage('contact')">Контакты</a>
+					</div>
+					<div class="md:hidden">
+						<button id="mobile-menu-button" class="text-gray-700 hover:text-blue-600">
+							<i class="fas fa-bars text-xl"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+			<!-- Мобильное меню -->
+			<div id="mobile-menu" class="hidden md:hidden bg-white pb-4 px-4">
+				<a href="#" class="block py-2 text-gray-700 hover:text-blue-600" onclick="showPage('home')">Главная</a>
+				<a href="#" class="block py-2 text-gray-700 hover:text-blue-600" onclick="showPage('about')">Обо мне</a>
+				<a href="#" class="block py-2 text-gray-700 hover:text-blue-600" onclick="showPage('services')">Услуги</a>
+				<a href="#" class="block py-2 text-gray-700 hover:text-blue-600" onclick="showPage('pricing')">Цены</a>
+				<a href="#" class="block py-2 text-gray-700 hover:text-blue-600" onclick="showPage('testimonials')">Отзывы</a>
+				<a href="#" class="block py-2 text-gray-700 hover:text-blue-600" onclick="showPage('contact')">Контакты</a>
+			</div>
+		</nav>
+
+		<!-- Основной контент (страницы) -->
+		<main class="container mx-auto px-4 py-8">
+			<!-- Главная страница -->
+			<div id="home-page" class="page-active page-transition">
+				<!-- Герой секция -->
+				<section class="hero-gradient rounded-xl text-white p-8 md:p-12 mb-12">
+					<div class="max-w-3xl mx-auto text-center">
+						<h1 class="text-4xl md:text-5xl font-bold mb-6">Достигни своей лучшей формы с персональным тренером</h1>
+						<p class="text-xl mb-8">Индивидуальный подход к тренировкам и питанию для максимальных результатов</p>
+						<div class="flex flex-col sm:flex-row justify-center gap-4">
+							<button
+								class="bg-white text-blue-600 font-bold py-3 px-6 rounded-lg hover:bg-blue-50 transition duration-300"
+								onclick="showPage('contact')">
+								Начать тренировки
+							</button>
+							<button
+								class="bg-transparent border-2 border-white text-white font-bold py-3 px-6 rounded-lg hover:bg-white hover:text-blue-600 transition duration-300"
+								onclick="showPage('services')">
+								Узнать больше
+							</button>
+						</div>
+					</div>
+				</section>
+
+				<!-- Преимущества -->
+				<section class="mb-16">
+					<h2 class="text-3xl font-bold text-center mb-12">Почему стоит заниматься со мной</h2>
+					<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+						<div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300">
+							<div class="text-blue-500 mb-4 text-3xl"><i class="fas fa-chart-line"></i></div>
+							<h3 class="text-xl font-bold mb-3">Быстрые результаты</h3>
+							<p class="text-gray-600">
+								Индивидуальная программа тренировок позволяет добиваться видимых изменений уже через 4-6 недель.
+							</p>
+						</div>
+						<div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300">
+							<div class="text-blue-500 mb-4 text-3xl"><i class="fas fa-user-tie"></i></div>
+							<h3 class="text-xl font-bold mb-3">Профессионализм</h3>
+							<p class="text-gray-600">Сертифицированный тренер с 10-летним опытом поможет вам достичь любых целей.</p>
+						</div>
+						<div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300">
+							<div class="text-blue-500 mb-4 text-3xl"><i class="fas fa-heartbeat"></i></div>
+							<h3 class="text-xl font-bold mb-3">Здоровье и безопасность</h3>
+							<p class="text-gray-600">
+								Все упражнения подбираются с учетом вашего состояния здоровья и физической подготовки.
+							</p>
+						</div>
+					</div>
+				</section>
+
+				<!-- Преимущества 2 -->
+				<section class="mb-16">
+					<div class="flex flex-col md:flex-row items-center bg-white rounded-xl overflow-hidden shadow-lg">
+						<div class="md:w-1/2 p-8 md:p-12">
+							<h2 class="text-3xl font-bold mb-6">Индивидуальный подход к каждому клиенту</h2>
+							<p class="text-gray-600 mb-6">
+								Я разрабатываю персональные программы тренировок с учетом ваших целей, уровня подготовки и особенностей
+								организма. Мы вместе пройдем путь от постановки цели до ее достижения.
+							</p>
+							<ul class="space-y-3">
+								<li class="flex items-center">
+									<i class="fas fa-check text-green-500 mr-2"></i> Персональные тренировки
+								</li>
+								<li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> План питания</li>
+								<li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Поддержка 24/7</li>
+								<li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Коррекция программы</li>
+							</ul>
+						</div>
+						<div class="md:w-1/2 h-64 md:h-auto bg-gray-200 flex items-center justify-center">
+							<img
+								src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+								alt="Тренировка"
+								class="w-full h-full object-cover" />
+						</div>
+					</div>
+				</section>
+
+				<!-- Призыв к действию -->
+				<section class="bg-blue-600 text-white rounded-xl p-8 text-center">
+					<h2 class="text-2xl md:text-3xl font-bold mb-4">Готовы изменить свою жизнь?</h2>
+					<p class="mb-6 max-w-xl mx-auto">
+						Запишитесь на первую бесплатную консультацию и получите индивидуальный план тренировок!
+					</p>
+					<button
+						class="bg-white text-blue-600 font-bold py-3 px-8 rounded-lg hover:bg-blue-50 transition duration-300"
+						onclick="showPage('contact')">
+						Записаться сейчас
+					</button>
+				</section>
+			</div>
+
+			<!-- Страница "Обо мне" -->
+			<div id="about-page" class="page-hidden page-transition">
+				<div class="max-w-5xl mx-auto">
+					<h1 class="text-3xl md:text-4xl font-bold mb-8 text-center">Обо мне</h1>
+
+					<div class="flex flex-col md:flex-row items-center gap-8 mb-12">
+						<div class="md:w-1/3">
+							<img
+								src="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+								alt="Тренер"
+								class="w-full rounded-lg shadow-lg" />
+						</div>
+						<div class="md:w-2/3">
+							<h2 class="text-2xl font-bold mb-4">Максим Иванов</h2>
+							<p class="text-gray-700 mb-4">
+								Профессиональный персональный тренер по фитнесу с более чем 10-летним опытом работы.
+							</p>
+							<p class="text-gray-700 mb-4">
+								Специализируюсь на снижении веса, наборе мышечной массы, подготовке к соревнованиям и реабилитации после
+								травм.
+							</p>
+							<p class="text-gray-700 mb-6">
+								Моя миссия - помочь людям обрести здоровье, уверенность в себе и любовь к активному образу жизни.
+							</p>
+
+							<div class="grid grid-cols-2 gap-4">
+								<div class="bg-blue-50 p-4 rounded-lg">
+									<p class="font-bold text-blue-600">10+</p>
+									<p>Лет опыта</p>
+								</div>
+								<div class="bg-blue-50 p-4 rounded-lg">
+									<p class="font-bold text-blue-600">500+</p>
+									<p>Довольных клиентов</p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="mb-12">
+						<h2 class="text-2xl font-bold mb-6 text-center">Мои сертификаты и образование</h2>
+						<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+							<div class="bg-white p-6 rounded-lg shadow-md">
+								<h3 class="text-xl font-bold mb-2 text-blue-600">NASM Certified Personal Trainer</h3>
+								<p class="text-gray-600">National Academy of Sports Medicine, 2015</p>
+							</div>
+							<div class="bg-white p-6 rounded-lg shadow-md">
+								<h3 class="text-xl font-bold mb-2 text-blue-600">Специалист по спортивной диетологии</h3>
+								<p class="text-gray-600">Международный университет фитнеса, 2017</p>
+							</div>
+							<div class="bg-white p-6 rounded-lg shadow-md">
+								<h3 class="text-xl font-bold mb-2 text-blue-600">Курс по функциональному тренингу</h3>
+								<p class="text-gray-600">Академия функционального тренинга, 2019</p>
+							</div>
+							<div class="bg-white p-6 rounded-lg shadow-md">
+								<h3 class="text-xl font-bold mb-2 text-blue-600">Специалист по реабилитации</h3>
+								<p class="text-gray-600">Институт спортивной медицины, 2020</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="bg-white p-8 rounded-xl shadow-lg mb-12">
+						<h2 class="text-2xl font-bold mb-6 text-center">Мои принципы работы</h2>
+						<div class="space-y-6">
+							<div class="flex items-start">
+								<div class="bg-blue-100 p-3 rounded-full mr-4">
+									<i class="fas fa-bullseye text-blue-600"></i>
+								</div>
+								<div>
+									<h3 class="text-xl font-bold mb-2">Четкие цели</h3>
+									<p class="text-gray-700">
+										Определяем конкретные, измеримые и достижимые цели с четкими временными рамками.
+									</p>
+								</div>
+							</div>
+							<div class="flex items-start">
+								<div class="bg-blue-100 p-3 rounded-full mr-4">
+									<i class="fas fa-cogs text-blue-600"></i>
+								</div>
+								<div>
+									<h3 class="text-xl font-bold mb-2">Системный подход</h3>
+									<p class="text-gray-700">
+										Разрабатываю комплексные программы, включающие тренировки, питание и восстановление.
+									</p>
+								</div>
+							</div>
+							<div class="flex items-start">
+								<div class="bg-blue-100 p-3 rounded-full mr-4">
+									<i class="fas fa-chart-line text-blue-600"></i>
+								</div>
+								<div>
+									<h3 class="text-xl font-bold mb-2">Прогрессия нагрузок</h3>
+									<p class="text-gray-700">
+										Регулярно корректируем программу для постоянного прогресса и избежания плато.
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="text-center">
+						<button
+							onclick="showPage('contact')"
+							class="bg-blue-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-blue-700 transition duration-300">
+							Связаться со мной
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<!-- Страница "Услуги" -->
+			<div id="services-page" class="page-hidden page-transition">
+				<h1 class="text-3xl md:text-4xl font-bold mb-12 text-center">Мои услуги</h1>
+
+				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb1-6">
+					<!-- Услуга 1 -->
+					<div
+						class="trainer-card bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
+						<img
+							src="https://images.unsplash.com/photo-1538805060514-97d9cc17730c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+							alt="Персональные тренировки"
+							class="w-full h-48 object-cover" />
+						<div class="p-6">
+							<h3 class="text-xl font-bold mb-3">Персональные тренировки</h3>
+							<p class="text-gray-600 mb-4">
+								Индивидуальные занятия с полным вниманием тренера, разработанные специально для вас.
+							</p>
+							<ul class="space-y-2 mb-4">
+								<li class="flex items-start">
+									<i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+									<span>Индивидуальная программа</span>
+								</li>
+								<li class="flex items-start">
+									<i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+									<span>Коррекция техники</span>
+								</li>
+								<li class="flex items-start">
+									<i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+									<span>Максимальная эффективность</span>
+								</li>
+							</ul>
+							<button class="text-blue-600 font-medium hover:text-blue-800" onclick="showPage('pricing')">
+								Узнать цены →
+							</button>
+						</div>
+					</div>
+
+					<!-- Услуга 2 -->
+					<div
+						class="trainer-card bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
+						<img
+							src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+							alt="Онлайн-тренировки"
+							class="w-full h-48 object-cover" />
+						<div class="p-6">
+							<h3 class="text-xl font-bold mb-3">Онлайн-тренировки</h3>
+							<p class="text-gray-600 mb-4">
+								Занимайтесь в удобное время и в любом месте с полноценной поддержкой тренера.
+							</p>
+							<ul class="space-y-2 mb-4">
+								<li class="flex items-start">
+									<i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+									<span>Гибкий график</span>
+								</li>
+								<li class="flex items-start">
+									<i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+									<span>Доступ из любой точки мира</span>
+								</li>
+								<li class="flex items-start">
+									<i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+									<span>Персональный онлайн-дневник</span>
+								</li>
+							</ul>
+							<button class="text-blue-600 font-medium hover:text-blue-800" onclick="showPage('pricing')">
+								Узнать цены →
+							</button>
+						</div>
+					</div>
+
+					<!-- Услуга 3 -->
+					<div
+						class="trainer-card bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
+						<img
+							src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+							alt="План питания"
+							class="w-full h-48 object-cover" />
+						<div class="p-6">
+							<h3 class="text-xl font-bold mb-3">Индивидуальный план питания</h3>
+							<p class="text-gray-600 mb-4">
+								Сбалансированное питание, разработанное с учетом ваших целей, предпочтений и состояния здоровья.
+							</p>
+							<ul class="space-y-2 mb-4">
+								<li class="flex items-start">
+									<i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+									<span>Персонализация под ваши нужды</span>
+								</li>
+								<li class="flex items-start">
+									<i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+									<span>Рецепты и план питания</span>
+								</li>
+								<li class="flex items-start">
+									<i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+									<span>Консультация диетолога</span>
+								</li>
+							</ul>
+							<button class="text-blue-600 font-medium hover:text-blue-800" onclick="showPage('pricing')">
+								Узнать цены →
+							</button>
+						</div>
+					</div>
+
+					<!-- Услуга 4 -->
+					<div
+						class="trainer-card bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
+						<img
+							src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+							alt="Групповые тренировки"
+							class="w-full h-48 object-cover" />
+						<div class="p-6">
+							<h3 class="text-xl font-bold mb-3">Групповые тренировки</h3>
+							<p class="text-gray-600 mb-4">
+								Занятия в мини-группах до 5 человек с дружеской атмосферой и поддержкой тренера.
+							</p>
+							<ul class="space-y-2 mb-4">
+								<li class="flex items-start">
+									<i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+									<span>Мотивирующая атмосфера</span>
+								</li>
+								<li class="flex items-start">
+									<i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+									<span>Экономия средств</span>
+								</li>
+								<li class="flex items-start">
+									<i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+									<span>Разнообразие тренировок</span>
+								</li>
+							</ul>
+							<button class="text-blue-600 font-medium hover:text-blue-800" onclick="showPage('pricing')">
+								Узнать цены →
+							</button>
+						</div>
+					</div>
+
+					<!-- Услуга 5 -->
+					<div
+						class="trainer-card bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
+						<img
+							src="https://images.unsplash.com/photo-1518611012118-696072aa579a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+							alt="Подготовка к соревнованиям"
+							class="w-full h-48 object-cover" />
+						<div class="p-6">
+							<h3 class="text-xl font-bold mb-3">Подготовка к соревнованиям</h3>
+							<p class="text-gray-600 mb-4">
+								Комплексная подготовка к фитнес-бикини, бодибилдингу, кроссфиту и другим соревнованиям.
+							</p>
+							<ul class="space-y-2 mb-4">
+								<li class="flex items-start">
+									<i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+									<span>Программа подготовки</span>
+								</li>
+								<li class="flex items-start">
+									<i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+									<span>План сушки</span>
+								</li>
+								<li class="flex items-start">
+									<i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+									<span>Психологическая подготовка</span>
+								</li>
+							</ul>
+							<button class="text-blue-600 font-medium hover:text-blue-800" onclick="showPage('pricing')">
+								Узнать цены →
+							</button>
+						</div>
+					</div>
+
+					<!-- Услуга 6 -->
+					<div
+						class="trainer-card bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
+						<img
+							src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+							alt="Реабилитация"
+							class="w-full h-48 object-cover" />
+						<div class="p-6">
+							<h3 class="text-xl font-bold mb-3">Реабилитация после травм</h3>
+							<p class="text-gray-600 mb-4">
+								Специальные программы для восстановления после травм и операций опорно-двигательного аппарата.
+							</p>
+							<ul class="space-y-2 mb-4">
+								<li class="flex items-start">
+									<i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+									<span>Безопасные нагрузки</span>
+								</li>
+								<li class="flex items-start">
+									<i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+									<span>Сотрудничество с врачами</span>
+								</li>
+								<li class="flex items-start">
+									<i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+									<span>Постепенное восстановление</span>
+								</li>
+							</ul>
+							<button class="text-blue-600 font-medium hover:text-blue-800" onclick="showPage('pricing')">
+								Узнать цены →
+							</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="bg-blue-600 text-white rounded-xl p-8 text-center max-w-4xl mx-auto mt-12">
+					<h2 class="text-2xl md:text-3xl font-bold mb-4">Интересна одна из услуг?</h2>
+					<p class="mb-6">
+						Свяжитесь со мной для бесплатной консультации и я помогу подобрать оптимальную программу для ваших целей!
+					</p>
+					<button
+						class="bg-white text-blue-600 font-bold py-3 px-8 rounded-lg hover:bg-blue-50 transition duration-300"
+						onclick="showPage('contact')">
+						Записаться на консультацию
+					</button>
+				</div>
+			</div>
+
+			<!-- Страница "Цены" -->
+			<div id="pricing-page" class="page-hidden page-transition">
+				<h1 class="text-3xl md:text-4xl font-bold mb-12 text-center">Цены на мои услуги</h1>
+
+				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+					<!-- Тариф 1 -->
+					<div
+						class="bg-white rounded-xl overflow-hidden shadow-lg border-2 border-transparent hover:border-blue-500 transition duration-300">
+						<div class="bg-blue-600 text-white p-6 text-center">
+							<h3 class="text-xl font-bold mb-2">Разовые тренировки</h3>
+							<p class="mb-4">Для тех, кто хочет попробовать</p>
+							<div class="text-3xl font-bold">1 500 ₽</div>
+							<p class="text-sm">за 1 занятие</p>
+						</div>
+						<div class="p-6">
+							<ul class="space-y-3 mb-6">
+								<li class="flex items-center">
+									<i class="fas fa-check text-green-500 mr-2"></i>
+									<span>1 часовая тренировка</span>
+								</li>
+								<li class="flex items-center">
+									<i class="fas fa-check text-green-500 mr-2"></i>
+									<span>Анализ текущей формы</span>
+								</li>
+								<li class="flex items-center">
+									<i class="fas fa-check text-green-500 mr-2"></i>
+									<span>Персональный подход</span>
+								</li>
+								<li class="flex items-center">
+									<i class="fas fa-times text-gray-400 mr-2"></i>
+									<span class="text-gray-400">План тренировок</span>
+								</li>
+								<li class="flex items-center">
+									<i class="fas fa-times text-gray-400 mr-2"></i>
+									<span class="text-gray-400">Консультация по питанию</span>
+								</li>
+							</ul>
+							<button
+								class="w-full bg-blue-600 text-white font-bold py-3 rounded-lg hover:bg-blue-700 transition duration-300"
+								onclick="showPage('contact')">
+								Записаться
+							</button>
+						</div>
+					</div>
+
+					<!-- Тариф 2 -->
+					<div class="bg-white rounded-xl overflow-hidden shadow-xl border-2 border-blue-500 transform scale-105 z-10">
+						<div class="bg-blue-700 text-white p-6 text-center relative">
+							<div class="absolute top-0 right-0 bg-yellow-400 text-black text-xs font-bold px-3 py-1 rounded-bl-lg">
+								Популярный
+							</div>
+							<h3 class="text-xl font-bold mb-2">Месячный абонемент</h3>
+							<p class="mb-4">Оптимальный вариант</p>
+							<div class="text-3xl font-bold">12 000 ₽</div>
+							<p class="text-sm">за 8 тренировок</p>
+						</div>
+						<div class="p-6">
+							<ul class="space-y-3 mb-6">
+								<li class="flex items-center">
+									<i class="fas fa-check text-green-500 mr-2"></i>
+									<span>8 тренировок по 1 часу</span>
+								</li>
+								<li class="flex items-center">
+									<i class="fas fa-check text-green-500 mr-2"></i>
+									<span>Индивидуальная программа</span>
+								</li>
+								<li class="flex items-center">
+									<i class="fas fa-check text-green-500 mr-2"></i>
+									<span>Коррекция техники</span>
+								</li>
+								<li class="flex items-center">
+									<i class="fas fa-check text-green-500 mr-2"></i>
+									<span>Базовый план питания</span>
+								</li>
+								<li class="flex items-center">
+									<i class="fas fa-check text-green-500 mr-2"></i>
+									<span>Поддержка между тренировками</span>
+								</li>
+							</ul>
+							<button
+								class="w-full bg-blue-700 text-white font-bold py-3 rounded-lg hover:bg-blue-800 transition duration-300"
+								onclick="showPage('contact')">
+								Записаться
+							</button>
+						</div>
+					</div>
+
+					<!-- Тариф 3 -->
+					<div
+						class="bg-white rounded-xl overflow-hidden shadow-lg border-2 border-transparent hover:border-blue-500 transition duration-300">
+						<div class="bg-blue-600 text-white p-6 text-center">
+							<h3 class="text-xl font-bold mb-2">Индивидуальная программа</h3>
+							<p class="mb-4">Максимальный результат</p>
+							<div class="text-3xl font-bold">25 000 ₽</div>
+							<p class="text-sm">за месяц</p>
+						</div>
+						<div class="p-6">
+							<ul class="space-y-3 mb-6">
+								<li class="flex items-center">
+									<i class="fas fa-check text-green-500 mr-2"></i>
+									<span>12 тренировок по 1 часу</span>
+								</li>
+								<li class="flex items-center">
+									<i class="fas fa-check text-green-500 mr-2"></i>
+									<span>Персональная программа</span>
+								</li>
+								<li class="flex items-center">
+									<i class="fas fa-check text-green-500 mr-2"></i>
+									<span>Индивидуальный план питания</span>
+								</li>
+								<li class="flex items-center">
+									<i class="fas fa-check text-green-500 mr-2"></i>
+									<span>Еженедельная коррекция</span>
+								</li>
+								<li class="flex items-center">
+									<i class="fas fa-check text-green-500 mr-2"></i>
+									<span>Контроль прогресса 24/7</span>
+								</li>
+							</ul>
+							<button
+								class="w-full bg-blue-600 text-white font-bold py-3 rounded-lg hover:bg-blue-700 transition duration-300"
+								onclick="showPage('contact')">
+								Записаться
+							</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+					<!-- Доп. услуга 1 -->
+					<div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300">
+						<div class="flex items-start mb-4">
+							<div class="bg-blue-100 p-3 rounded-full mr-4">
+								<i class="fas fa-utensils text-blue-600"></i>
+							</div>
+							<div>
+								<h3 class="text-xl font-bold">Индивидуальный план питания</h3>
+								<p class="text-gray-600">5 000 ₽ / месяц</p>
+							</div>
+						</div>
+						<p class="text-gray-700 mb-4">
+							Разработаем персонализированный рацион с учетом ваших целей, предпочтений и состояния здоровья.
+						</p>
+						<button class="text-blue-600 font-medium hover:text-blue-800" onclick="showPage('contact')">
+							Заказать →
+						</button>
+					</div>
+
+					<!-- Доп. услуга 2 -->
+					<div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300">
+						<div class="flex items-start mb-4">
+							<div class="bg-blue-100 p-3 rounded-full mr-4">
+								<i class="fas fa-home text-blue-600"></i>
+							</div>
+							<div>
+								<h3 class="text-xl font-bold">Тренировки у вас дома</h3>
+								<p class="text-gray-600">+30% к стоимости</p>
+							</div>
+						</div>
+						<p class="text-gray-700 mb-4">
+							Проведение тренировок у вас дома или в удобном для вас месте с выездом тренера.
+						</p>
+						<button class="text-blue-600 font-medium hover:text-blue-800" onclick="showPage('contact')">
+							Заказать →
+						</button>
+					</div>
+
+					<!-- Доп. услуга 3 -->
+					<div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300">
+						<div class="flex items-start mb-4">
+							<div class="bg-blue-100 p-3 rounded-full mr-4">
+								<i class="fas fa-user-friends text-blue-600"></i>
+							</div>
+							<div>
+								<h3 class="text-xl font-bold">Сплит-тренировка</h3>
+								<p class="text-gray-600">2 500 ₽ / занятие</p>
+							</div>
+						</div>
+						<p class="text-gray-700 mb-4">
+							Совместная тренировка для пары или друзей. Разделите стоимость и получите мотивационного партнера!
+						</p>
+						<button class="text-blue-600 font-medium hover:text-blue-800" onclick="showPage('contact')">
+							Заказать →
+						</button>
+					</div>
+
+					<!-- Доп. услуга 4 -->
+					<div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300">
+						<div class="flex items-start mb-4">
+							<div class="bg-blue-100 p-3 rounded-full mr-4">
+								<i class="fas fa-dumbbell text-blue-600"></i>
+							</div>
+							<div>
+								<h3 class="text-xl font-bold">Программа для зала</h3>
+								<p class="text-gray-600">3 000 ₽</p>
+							</div>
+						</div>
+						<p class="text-gray-700 mb-4">
+							Разработка индивидуальной программы тренировок для самостоятельных занятий в зале.
+						</p>
+						<button class="text-blue-600 font-medium hover:text-blue-800" onclick="showPage('contact')">
+							Заказать →
+						</button>
+					</div>
+				</div>
+
+				<div class="bg-blue-50 rounded-xl p-8 text-center max-w-4xl mx-auto">
+					<h2 class="text-2xl font-bold mb-4">Гибкая система скидок</h2>
+					<p class="mb-6">
+						Я предоставляю скидки при покупке долгосрочных программ и корпоративным клиентам. Также действуют
+						специальные предложения для студентов и пенсионеров.
+					</p>
+					<button
+						class="bg-blue-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-blue-700 transition duration-300"
+						onclick="showPage('contact')">
+						Узнать о скидках
+					</button>
+				</div>
+			</div>
+
+			<!-- Страница "Отзывы" -->
+			<div id="testimonials-page" class="page-hidden page-transition">
+				<h1 class="text-3xl md:text-4xl font-bold mb-12 text-center">Отзывы моих клиентов</h1>
+
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+					<!-- Отзыв 1 -->
+					<div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300">
+						<div class="flex items-center mb-4">
+							<img
+								src="https://randomuser.me/api/portraits/women/44.jpg"
+								alt="Анна"
+								class="w-12 h-12 rounded-full mr-4" />
+							<div>
+								<h3 class="text-lg font-bold">Анна</h3>
+								<div class="flex text-yellow-400">
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+								</div>
+							</div>
+						</div>
+						<p class="text-gray-700 mb-4">
+							"За 3 месяца работы с Максимом я сбросила 12 кг и полностью изменила свое тело! Тренировки интересные и
+							разнообразные, а рекомендации по питанию помогли выработать здоровые привычки."
+						</p>
+						<div class="text-sm text-gray-500">23 февраля 2023</div>
+					</div>
+
+					<!-- Отзыв 2 -->
+					<div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300">
+						<div class="flex items-center mb-4">
+							<img
+								src="https://randomuser.me/api/portraits/men/32.jpg"
+								alt="Дмитрий"
+								class="w-12 h-12 rounded-full mr-4" />
+							<div>
+								<h3 class="text-lg font-bold">Дмитрий</h3>
+								<div class="flex text-yellow-400">
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+								</div>
+							</div>
+						</div>
+						<p class="text-gray-700 mb-4">
+							"После травмы колена думал, что уже не смогу вернуться в спорт. Благодаря реабилитационной программе
+							Максима через 6 месяцев я не только восстановился, но и стал сильнее, чем до травмы!"
+						</p>
+						<div class="text-sm text-gray-500">15 января 2023</div>
+					</div>
+
+					<!-- Отзыв 3 -->
+					<div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300">
+						<div class="flex items-center mb-4">
+							<img
+								src="https://randomuser.me/api/portraits/women/68.jpg"
+								alt="Елена"
+								class="w-12 h-12 rounded-full mr-4" />
+							<div>
+								<h3 class="text-lg font-bold">Елена</h3>
+								<div class="flex text-yellow-400">
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+								</div>
+							</div>
+						</div>
+						<p class="text-gray-700 mb-4">
+							"Онлайн-тренировки с Максимом стали для меня спасением во время декрета. Занимаюсь в любое удобное время,
+							получаю полноценную поддержку и уже потеряла 8 кг за 2 месяца!"
+						</p>
+						<div class="text-sm text-gray-500">3 декабря 2022</div>
+					</div>
+
+					<!-- Отзыв 4 -->
+					<div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300">
+						<div class="flex items-center mb-4">
+							<img
+								src="https://randomuser.me/api/portraits/men/75.jpg"
+								alt="Сергей"
+								class="w-12 h-12 rounded-full mr-4" />
+							<div>
+								<h3 class="text-lg font-bold">Сергей</h3>
+								<div class="flex text-yellow-400">
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star-half-alt"></i>
+								</div>
+							</div>
+						</div>
+						<p class="text-gray-700 mb-4">
+							"Максим помог мне подготовиться к первым в моей жизни соревнованиям по бодибилдингу. Его знания и
+							поддержка были неоценимы - я занял 3 место в своей категории!"
+						</p>
+						<div class="text-sm text-gray-500">10 ноября 2022</div>
+					</div>
+				</div>
+
+				<!-- Видео-отзывы -->
+				<div class="mb-12">
+					<h2 class="text-2xl font-bold mb-8 text-center">Видео-отзывы</h2>
+					<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+						<!-- Видео 1 -->
+						<div class="bg-gray-200 rounded-xl overflow-hidden shadow-md">
+							<div class="relative pb-[56.25%] bg-black">
+								<div class="absolute inset-0 flex items-center justify-center text-white">
+									<i class="fas fa-play text-4xl"></i>
+								</div>
+							</div>
+							<div class="p-4">
+								<h3 class="font-bold mb-2">История Анны</h3>
+								<p class="text-sm text-gray-600">Результаты за 6 месяцев</p>
+							</div>
+						</div>
+						<!-- Видео 2 -->
+						<div class="bg-gray-200 rounded-xl overflow-hidden shadow-md">
+							<div class="relative pb-[56.25%] bg-black">
+								<div class="absolute inset-0 flex items-center justify-center text-white">
+									<i class="fas fa-play text-4xl"></i>
+								</div>
+							</div>
+							<div class="p-4">
+								<h3 class="font-bold mb-2">История Игоря</h3>
+								<p class="text-sm text-gray-600">Трансформация за 1 год</p>
+							</div>
+						</div>
+						<!-- Видео 3 -->
+						<div class="bg-gray-200 rounded-xl overflow-hidden shadow-md">
+							<div class="relative pb-[56.25%] bg-black">
+								<div class="absolute inset-0 flex items-center justify-center text-white">
+									<i class="fas fa-play text-4xl"></i>
+								</div>
+							</div>
+							<div class="p-4">
+								<h3 class="font-bold mb-2">Групповые тренировки</h3>
+								<p class="text-sm text-gray-600">Отзывы команды</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Форма для отзыва -->
+				<div class="bg-white p-8 rounded-xl shadow-lg max-w-3xl mx-auto">
+					<h2 class="text-2xl font-bold mb-6 text-center">Оставьте свой отзыв</h2>
+					<form id="review-form" class="space-y-4">
+						<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+							<div>
+								<label for="review-name" class="block text-gray-700 font-medium mb-1">Ваше имя</label>
+								<input
+									type="text"
+									id="review-name"
+									class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
+							</div>
+							<div>
+								<label for="review-email" class="block text-gray-700 font-medium mb-1"
+									>Ваш email (не обязательно)</label
+								>
+								<input
+									type="email"
+									id="review-email"
+									class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
+							</div>
+						</div>
+						<div>
+							<label for="review-rating" class="block text-gray-700 font-medium mb-1">Ваша оценка</label>
+							<div class="flex space-x-1">
+								<i class="far fa-star text-2xl text-yellow-400 cursor-pointer" data-rating="1"></i>
+								<i class="far fa-star text-2xl text-yellow-400 cursor-pointer" data-rating="2"></i>
+								<i class="far fa-star text-2xl text-yellow-400 cursor-pointer" data-rating="3"></i>
+								<i class="far fa-star text-2xl text-yellow-400 cursor-pointer" data-rating="4"></i>
+								<i class="far fa-star text-2xl text-yellow-400 cursor-pointer" data-rating="5"></i>
+							</div>
+							<input type="hidden" id="review-rating" value="0" />
+						</div>
+						<div>
+							<label for="review-text" class="block text-gray-700 font-medium mb-1">Ваш отзыв</label>
+							<textarea
+								id="review-text"
+								rows="4"
+								class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"></textarea>
+						</div>
+						<div class="flex justify-center">
+							<button
+								type="submit"
+								class="bg-blue-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-blue-700 transition duration-300">
+								Отправить отзыв
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<!-- Страница "Контакты" -->
+			<div id="contact-page" class="page-hidden page-transition">
+				<h1 class="text-3xl md:text-4xl font-bold mb-12 text-center">Свяжитесь со мной</h1>
+
+				<div class="flex flex-col md:flex-row gap-8 mb-12">
+					<div class="md:w-1/2">
+						<div class="bg-white p-6 rounded-xl shadow-lg">
+							<h2 class="text-2xl font-bold mb-6">Контактная информация</h2>
+
+							<div class="space-y-6">
+								<div class="flex items-start">
+									<div class="bg-blue-100 p-3 rounded-full mr-4">
+										<i class="fas fa-map-marker-alt text-blue-600"></i>
+									</div>
+									<div>
+										<h3 class="text-lg font-bold mb-1">Местоположение</h3>
+										<p class="text-gray-700">г. Москва, ул. Фитнесная, 12</p>
+										<p class="text-gray-600 text-sm">Фитнес-клуб "Maximum Gym"</p>
+									</div>
+								</div>
+
+								<div class="flex items-start">
+									<div class="bg-blue-100 p-3 rounded-full mr-4">
+										<i class="fas fa-phone-alt text-blue-600"></i>
+									</div>
+									<div>
+										<h3 class="text-lg font-bold mb-1">Телефон</h3>
+										<p class="text-gray-700">+7 (999) 123-45-67</p>
+										<p class="text-gray-600 text-sm">Доступен в WhatsApp и Telegram</p>
+									</div>
+								</div>
+
+								<div class="flex items-start">
+									<div class="bg-blue-100 p-3 rounded-full mr-4">
+										<i class="fas fa-envelope text-blue-600"></i>
+									</div>
+									<div>
+										<h3 class="text-lg font-bold mb-1">Email</h3>
+										<p class="text-gray-700">trainer@protrainer.ru</p>
+										<p class="text-gray-600 text-sm">Ответ в течение 24 часов</p>
+									</div>
+								</div>
+
+								<div class="flex items-start">
+									<div class="bg-blue-100 p-3 rounded-full mr-4">
+										<i class="fas fa-clock text-blue-600"></i>
+									</div>
+									<div>
+										<h3 class="text-lg font-bold mb-1">График работы</h3>
+										<p class="text-gray-700">Пн-Пт: 7:00 - 22:00</p>
+										<p class="text-gray-700">Сб-Вс: 9:00 - 20:00</p>
+									</div>
+								</div>
+
+								<div class="flex items-start">
+									<div class="bg-blue-100 p-3 rounded-full mr-4">
+										<i class="fas fa-users text-blue-600"></i>
+									</div>
+									<div>
+										<h3 class="text-lg font-bold mb-1">Социальные сети</h3>
+										<div class="flex space-x-4 mt-2">
+											<a href="#" class="text-blue-600 hover:text-blue-800 text-2xl"
+												><i class="fab fa-instagram"></i
+											></a>
+											<a href="#" class="text-blue-600 hover:text-blue-800 text-2xl"><i class="fab fa-vk"></i></a>
+											<a href="#" class="text-blue-600 hover:text-blue-800 text-2xl"><i class="fab fa-telegram"></i></a>
+											<a href="#" class="text-blue-600 hover:text-blue-800 text-2xl"><i class="fab fa-youtube"></i></a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="md:w-1/2">
+						<div class="bg-white p-6 rounded-xl shadow-lg">
+							<h2 class="text-2xl font-bold mb-6">Напишите мне</h2>
+							<form id="contact-form" class="space-y-4">
+								<div>
+									<label for="contact-name" class="block text-gray-700 font-medium mb-1">Ваше имя</label>
+									<input
+										type="text"
+										id="contact-name"
+										class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+										required />
+								</div>
+								<div>
+									<label for="contact-phone" class="block text-gray-700 font-medium mb-1">Телефон</label>
+									<input
+										type="tel"
+										id="contact-phone"
+										class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+										required />
+								</div>
+								<div>
+									<label for="contact-email" class="block text-gray-700 font-medium mb-1">Email</label>
+									<input
+										type="email"
+										id="contact-email"
+										class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
+								</div>
+								<div>
+									<label for="contact-service" class="block text-gray-700 font-medium mb-1"
+										>Какая услуга вас интересует?</label
+									>
+									<select
+										id="contact-service"
+										class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+										<option value="">Выберите услугу</option>
+										<option value="Персональные тренировки">Персональные тренировки</option>
+										<option value="Онлайн-тренировки">Онлайн-тренировки</option>
+										<option value="План питания">План питания</option>
+										<option value="Групповые тренировки">Групповые тренировки</option>
+										<option value="Подготовка к соревнованиям">Подготовка к соревнованиям</option>
+										<option value="Реабилитация">Реабилитация</option>
+									</select>
+								</div>
+								<div>
+									<label for="contact-message" class="block text-gray-700 font-medium mb-1">Сообщение</label>
+									<textarea
+										id="contact-message"
+										rows="4"
+										class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"></textarea>
+								</div>
+								<div class="flex items-center">
+									<input
+										type="checkbox"
+										id="contact-agree"
+										class="mr-2 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+										required />
+									<label for="contact-agree" class="text-gray-700">Я согласен на обработку персональных данных</label>
+								</div>
+								<button
+									type="submit"
+									class="w-full bg-blue-600 text-white font-bold py-3 rounded-lg hover:bg-blue-700 transition duration-300">
+									Отправить сообщение
+								</button>
+							</form>
+						</div>
+					</div>
+				</div>
+
+				<div class="bg-white p-6 rounded-xl shadow-lg mb-12">
+					<h2 class="text-2xl font-bold mb-6 text-center">Часто задаваемые вопросы</h2>
+
+					<div class="space-y-4">
+						<div class="border-b border-gray-200 pb-4">
+							<button
+								class="flex justify-between items-center w-full text-left font-medium text-lg"
+								onclick="toggleFAQ(1)">
+								<span>Как проходит первая тренировка?</span>
+								<i class="fas fa-chevron-down transition-all duration-300" id="faq-icon-1"></i>
+							</button>
+							<div id="faq-content-1" class="hidden mt-2 text-gray-700">
+								Первая тренировка начинается с консультации — мы обсудим ваши цели, состояние здоровья, опыт тренировок
+								и возможные ограничения. Затем проведем тестовую тренировку, чтобы оценить ваш уровень физической
+								подготовки и дать первые рекомендации.
+							</div>
+						</div>
+
+						<div class="border-b border-gray-200 pb-4">
+							<button
+								class="flex justify-between items-center w-full text-left font-medium text-lg"
+								onclick="toggleFAQ(2)">
+								<span>Какое оборудование мне понадобится для онлайн-тренировок?</span>
+								<i class="fas fa-chevron-down transition-all duration-300" id="faq-icon-2"></i>
+							</button>
+							<div id="faq-content-2" class="hidden mt-2 text-gray-700">
+								Для онлайн-тренировок не обязательно иметь специальное оборудование. Я подбираю упражнения, которые
+								можно выполнять с минимальным инвентарем: гантели, фитнес-резинки, коврик. Если оборудования нет, можно
+								использовать подручные средства (бутылки с водой, стул и т.д.).
+							</div>
+						</div>
+
+						<div class="border-b border-gray-200 pb-4">
+							<button
+								class="flex justify-between items-center w-full text-left font-medium text-lg"
+								onclick="toggleFAQ(3)">
+								<span>Как часто нужно тренироваться?</span>
+								<i class="fas fa-chevron-down transition-all duration-300" id="faq-icon-3"></i>
+							</button>
+							<div id="faq-content-3" class="hidden mt-2 text-gray-700">
+								Оптимальная частота тренировок зависит от ваших целей, уровня подготовки и образа жизни. Для новичков
+								обычно рекомендуется 2-3 тренировки в неделю, для продвинутых — 3-5. Во время консультации мы подберем
+								оптимальный для вас график.
+							</div>
+						</div>
+
+						<div class="border-b border-gray-200 pb-4">
+							<button
+								class="flex justify-between items-center w-full text-left font-medium text-lg"
+								onclick="toggleFAQ(4)">
+								<span>Можно ли заниматься при наличии травм или хронических заболеваний?</span>
+								<i class="fas fa-chevron-down transition-all duration-300" id="faq-icon-4"></i>
+							</button>
+							<div id="faq-content-4" class="hidden mt-2 text-gray-700">
+								Да, в большинстве случаев можно. Я имею специализацию по реабилитации и работе с ограничениями по
+								здоровью. Важно предоставить информацию о вашем состоянии до начала тренировок, при необходимости —
+								медицинские заключения. Программа будет адаптирована под ваши особенности.
+							</div>
+						</div>
+
+						<div>
+							<button
+								class="flex justify-between items-center w-full text-left font-medium text-lg"
+								onclick="toggleFAQ(5)">
+								<span>Как быстро я увижу результаты?</span>
+								<i class="fas fa-chevron-down transition-all duration-300" id="faq-icon-5"></i>
+							</button>
+							<div id="faq-content-5" class="hidden mt-2 text-gray-700">
+								Первые изменения (повышение выносливости, улучшение самочувствия, небольшие изменения в фигуре) обычно
+								заметны уже через 3-4 недели регулярных тренировок. Значительные визуальные изменения происходят через
+								8-12 недель, в зависимости от исходных данных и целей. Я фиксирую ваш прогресс с помощью замеров и фото,
+								чтобы вы могли объективно оценивать результаты.
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+
+		<!-- Футер -->
+		<footer class="bg-gray-800 text-white py-12">
+			<div class="container mx-auto px-4">
+				<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+					<div>
+						<h3 class="text-xl font-bold mb-4">ProTrainer</h3>
+						<p class="text-gray-400">Профессиональные персональные тренировки для достижения ваших фитнес-целей.</p>
+					</div>
+					<div>
+						<h4 class="text-lg font-bold mb-4">Навигация</h4>
+						<ul class="space-y-2">
+							<li><a href="#" class="text-gray-400 hover:text-white" onclick="showPage('home')">Главная</a></li>
+							<li><a href="#" class="text-gray-400 hover:text-white" onclick="showPage('about')">Обо мне</a></li>
+							<li><a href="#" class="text-gray-400 hover:text-white" onclick="showPage('services')">Услуги</a></li>
+							<li><a href="#" class="text-gray-400 hover:text-white" onclick="showPage('pricing')">Цены</a></li>
+							<li><a href="#" class="text-gray-400 hover:text-white" onclick="showPage('testimonials')">Отзывы</a></li>
+							<li><a href="#" class="text-gray-400 hover:text-white" onclick="showPage('contact')">Контакты</a></li>
+						</ul>
+					</div>
+					<div>
+						<h4 class="text-lg font-bold mb-4">Контакты</h4>
+						<ul class="space-y-2">
+							<li class="flex items-center">
+								<i class="fas fa-map-marker-alt mr-2 text-gray-400"></i>
+								<span class="text-gray-400">г. Москва, ул. Фитнесная, 12</span>
+							</li>
+							<li class="flex items-center">
+								<i class="fas fa-phone-alt mr-2 text-gray-400"></i>
+								<span class="text-gray-400">+7 (999) 123-45-67</span>
+							</li>
+							<li class="flex items-center">
+								<i class="fas fa-envelope mr-2 text-gray-400"></i>
+								<span class="text-gray-400">trainer@protrainer.ru</span>
+							</li>
+						</ul>
+					</div>
+					<div>
+						<h4 class="text-lg font-bold mb-4">Подписаться</h4>
+						<p class="text-gray-400 mb-4">Подпишитесь на мои соцсети, чтобы быть в курсе новостей и акций:</p>
+						<div class="flex space-x-4">
+							<a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-instagram"></i></a>
+							<a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-vk"></i></a>
+							<a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-telegram"></i></a>
+							<a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-youtube"></i></a>
+						</div>
+					</div>
+				</div>
+				<div class="border-t border-gray-700 mt-8 pt-8 text-gray-400 text-center">
+					<p>&copy; 2023 ProTrainer. Все права защищены.</p>
+				</div>
+			</div>
+		</footer>
+
+		<script>
+			// Переключение страниц
+			function showPage(pageId) {
+				// Скрыть все страницы
+				document.querySelectorAll('[id$="-page"]').forEach((page) => {
+					page.classList.add('page-hidden')
+					page.classList.remove('page-active')
+				})
+
+				// Показать выбранную страницу
+				document.getElementById(`${pageId}-page`).classList.remove('page-hidden')
+				setTimeout(() => {
+					document.getElementById(`${pageId}-page`).classList.add('page-active')
+				}, 10)
+
+				// Закрыть мобильное меню если открыто
+				document.getElementById('mobile-menu').classList.add('hidden')
+
+				// Прокрутить вверх
+				window.scrollTo(0, 0)
+			}
+
+			// Мобильное меню
+			document.getElementById('mobile-menu-button').addEventListener('click', function () {
+				const menu = document.getElementById('mobile-menu')
+				menu.classList.toggle('hidden')
+			})
+
+			// Рейтинг в форме отзывов
+			const stars = document.querySelectorAll('[data-rating]')
+			const ratingInput = document.getElementById('review-rating')
+
+			stars.forEach((star) => {
+				star.addEventListener('click', function () {
+					const rating = this.getAttribute('data-rating')
+					ratingInput.value = rating
+
+					// Обновить звезды
+					stars.forEach((s, i) => {
+						if (i < rating) {
+							s.classList.remove('far')
+							s.classList.add('fas')
+						} else {
+							s.classList.remove('fas')
+							s.classList.add('far')
+						}
+					})
+				})
+			})
+
+			// FAQ аккордеон
+			function toggleFAQ(index) {
+				const content = document.getElementById(`faq-content-${index}`)
+				const icon = document.getElementById(`faq-icon-${index}`)
+
+				content.classList.toggle('hidden')
+				icon.classList.toggle('transform')
+				icon.classList.toggle('rotate-180')
+			}
+
+			// Форма контактов
+			document.getElementById('contact-form').addEventListener('submit', function (e) {
+				e.preventDefault()
+				alert('Ваше сообщение отправлено! Я свяжусь с вами в ближайшее время.')
+				this.reset()
+			})
+
+			// Форма отзывов
+			document.getElementById('review-form').addEventListener('submit', function (e) {
+				e.preventDefault()
+				alert('Спасибо за ваш отзыв! После модерации он появится на сайте.')
+				this.reset()
+
+				// Сбросить звезды
+				stars.forEach((star) => {
+					star.classList.remove('fas')
+					star.classList.add('far')
+				})
+				ratingInput.value = '0'
+			})
+		</script>
+	</body>
+</html>
