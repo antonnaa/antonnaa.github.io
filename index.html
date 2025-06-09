@@ -38,7 +38,7 @@
 					<div class="flex items-center">
 						<a href="#" class="text-2xl font-bold text-blue-600" onclick="showPage('home')">ProTrainer</a>
 					</div>
-					<div class="hidden md:flex space-x-8">
+					<div class="hidden md:flex space-x-8 items-center">
 						<a href="#" class="text-gray-700 hover:text-blue-600 font-medium" onclick="showPage('home')">Главная</a>
 						<a href="#" class="text-gray-700 hover:text-blue-600 font-medium" onclick="showPage('about')">Обо мне</a>
 						<a href="#" class="text-gray-700 hover:text-blue-600 font-medium" onclick="showPage('services')">Услуги</a>
@@ -47,6 +47,8 @@
 							>Отзывы</a
 						>
 						<a href="#" class="text-gray-700 hover:text-blue-600 font-medium" onclick="showPage('contact')">Контакты</a>
+						<!-- Кнопка входа -->
+						<button onclick="showAuthModal()" class="text-gray-700 hover:text-blue-600 font-medium">Войти</button>
 					</div>
 					<div class="md:hidden">
 						<button id="mobile-menu-button" class="text-gray-700 hover:text-blue-600">
@@ -55,6 +57,7 @@
 					</div>
 				</div>
 			</div>
+
 			<!-- Мобильное меню -->
 			<div id="mobile-menu" class="hidden md:hidden bg-white pb-4 px-4">
 				<a href="#" class="block py-2 text-gray-700 hover:text-blue-600" onclick="showPage('home')">Главная</a>
@@ -63,6 +66,8 @@
 				<a href="#" class="block py-2 text-gray-700 hover:text-blue-600" onclick="showPage('pricing')">Цены</a>
 				<a href="#" class="block py-2 text-gray-700 hover:text-blue-600" onclick="showPage('testimonials')">Отзывы</a>
 				<a href="#" class="block py-2 text-gray-700 hover:text-blue-600" onclick="showPage('contact')">Контакты</a>
+				<!-- Кнопка входа для мобильного меню -->
+				<button onclick="showAuthModal()" class="w-full text-left py-2 text-gray-700 hover:text-blue-600">Войти</button>
 			</div>
 		</nav>
 
@@ -164,7 +169,7 @@
 
 					<div class="flex flex-col md:flex-row items-center gap-8 mb-12">
 						<div class="md:w-1/3">
-							<img src="/img/IMG_0614.jpeg" alt="Тренер" class="w-full rounded-lg shadow-lg" />
+							<img src="/antonnaa.github.io/img/IMG_0614.jpeg" alt="Тренер" class="w-full rounded-lg shadow-lg" />
 						</div>
 						<div class="md:w-2/3">
 							<h2 class="text-2xl font-bold mb-4">Антон Рассадин</h2>
@@ -1173,11 +1178,6 @@
 					</p>
 				</div>
 			</div>
-		</div>
-
-		<!-- Кнопка входа в шапке -->
-		<div class="hidden md:flex">
-			<button onclick="showAuthModal()" class="text-gray-700 hover:text-blue-600 font-medium">Войти</button>
 		</div>
 
 		<!-- Футер -->
